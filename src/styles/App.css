@@ -1,0 +1,1268 @@
+/* Define CSS Variables for colors at the root or a common ancestor */
+:root {
+  --bg-color-primary: #000;
+  --bg-color-secondary: #121212;
+  --bg-color-tertiary: #242424;
+  --bg-color-highlight: rgba(255, 255, 255, 0.1);
+  --bg-color-press: rgba(255, 255, 255, 0.2);
+  --text-color-primary: #fff;
+  --text-color-secondary: #b3b3b3; /* Standard grey */
+  --text-color-subdued: #a7a7a7;
+  --accent-color: #1db954;
+  --accent-color-darker: #1aa34a;
+  --modal-backdrop: rgba(0, 0, 0, 0.7);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Light Theme Overrides */
+.theme-light {
+  --bg-color-primary: #f5f5f5;
+  --bg-color-secondary: #ffffff;
+  --bg-color-tertiary: #e0e0e0;
+  --bg-color-highlight: rgba(0, 0, 0, 0.05);
+  --bg-color-press: rgba(0, 0, 0, 0.1);
+  --text-color-primary: #000; /* Pure black for main titles/text */
+  --text-color-secondary: #4a4a4a; /* Darker grey for secondary text (artists, meta) */
+  --text-color-subdued: #757575;
+  --accent-color: #1db954; /* Keep Spotify green or change */
+  --accent-color-darker: #1aa34a;
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.3);
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Retro Theme Overrides (Example: Sepia/Cream Tones) */
+.theme-retro {
+  --bg-color-primary: #f4e9db; /* Cream background */
+  --bg-color-secondary: #efe1ce; /* Slightly darker cream */
+  --bg-color-tertiary: #e8d7c4; /* Even darker */
+  --bg-color-highlight: rgba(101, 80, 59, 0.1); /* Brownish highlight */
+  --bg-color-press: rgba(101, 80, 59, 0.2);
+  --text-color-primary: #4a3c2f; /* Dark brown text */
+  --text-color-secondary: #755c48; /* Slightly darker, less saturated brown for secondary */
+  --text-color-subdued: #8a705a;
+  --accent-color: #c78b50; /* Muted orange/gold accent */
+  --accent-color-darker: #a8703c;
+  --modal-backdrop: rgba(74, 60, 47, 0.6); /* Brownish backdrop */
+  --scrollbar-thumb: rgba(101, 80, 59, 0.4);
+  --card-shadow: rgba(74, 60, 47, 0.2);
+  --border-color: rgba(101, 80, 59, 0.15);
+}
+
+/* Base app container */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-width: 100vw; /* Ensures no horizontal overflow */
+  overflow: hidden; /* Prevents scrollbars unless needed */
+  background-color: var(--bg-color-primary); /* Use variable */
+  color: var(--text-color-primary); /* Use variable */
+  font-family: 'Spotify Circular', 'Circular', Arial, sans-serif;
+  position: relative;
+}
+
+/* Fixed Sidebar Styles */
+.left-sidebar {
+  flex: 0 0 230px;
+  width: 230px;
+  min-width: 230px;
+  background-color: var(--bg-color-primary); /* Use variable */
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: var(--text-color-primary); /* Use variable */
+  margin-bottom: 1rem;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color); /* Use variable */
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  color: var(--text-color-secondary); /* Use variable */
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.menu-item:hover, .menu-item.active {
+  color: var(--text-color-primary); /* Use variable */
+}
+
+.menu-item svg {
+  margin-right: 1rem;
+}
+
+.library-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.library-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color-secondary); /* Use variable */
+  padding: 0.5rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.header-left svg {
+  margin-right: 1rem;
+}
+
+.header-right {
+  cursor: pointer;
+}
+
+.library-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.library-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.library-item:hover {
+  background-color: var(--bg-color-highlight); /* Use variable */
+}
+
+.library-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-right: 0.8rem;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title {
+  color: var(--text-color-primary); /* Use variable */
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.item-subtitle {
+  color: var(--text-color-secondary); /* Use variable */
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Main content wrapper */
+.main-content-wrapper {
+  flex: 1; /* Takes up all remaining space */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: calc(100vw - 230px); /* Ensures it doesn't overflow */
+  overflow-y: auto;
+  position: relative;
+  background-color: var(--bg-color-secondary); /* Use variable */
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+.main-content-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+.main-content-wrapper::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Main content */
+.main-content {
+  padding: 1rem;
+  /* Increase padding-bottom even more to prevent content being cut off */
+  padding-bottom: 1400px; /* Further increased from 130px to 150px */
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: rgba(var(--bg-color-secondary-rgb, 18, 18, 18), 0.7); /* Fallback needed if var() not supported */
+  background-color: color-mix(in srgb, var(--bg-color-secondary) 70%, transparent); /* Modern way */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: 16px; /* Add gap between elements */
+  transition: background-color 0.3s ease;
+}
+
+/* Update topbar background based on scroll */
+.main-content-wrapper.scrolled .topbar {
+  background-color: var(--bg-color-secondary); /* Solid color when scrolled */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+/* New styles for the search bar in the topbar */
+.topbar-search {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color-tertiary); /* Use variable */
+  border-radius: 500px; /* Fully rounded */
+  padding: 6px 12px;
+  flex-grow: 1; /* Allow search to grow more */
+  flex-shrink: 1; /* Allow shrinking */
+  width: 300px; /* Reduced from original width */
+  max-width: 600px; /* Increase max width */
+  position: relative; /* For icon positioning */
+  transition: background-color 0.3s ease;
+}
+
+.topbar-search .search-icon {
+  color: var(--text-color-secondary); /* Use variable */
+  margin-right: 8px;
+  position: absolute; /* Position icon inside */
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; /* Adjust icon size */
+  transition: color 0.3s ease;
+}
+
+.topbar-search .search-input {
+  background: none;
+  border: none;
+  color: var(--text-color-primary); /* Use variable */
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  padding-left: 28px; /* Make space for the icon */
+  height: 28px; /* Match padding/height */
+  line-height: 28px;
+  transition: color 0.3s ease;
+}
+
+.topbar-search .search-input::placeholder {
+  color: var(--text-color-secondary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0; /* Prevent shrinking */
+  position: relative; /* Ensure stacking context for absolute positioning */
+}
+
+.notification-container {
+  position: relative; /* Needed for absolute positioning of the popover */
+  display: inline-block; /* Or flex, depending on layout */
+}
+
+.notification-popover {
+  position: absolute;
+  top: 100%; /* Position below the container */
+  right: 0; /* Align to the right edge of the container */
+  margin-top: 8px; /* Add some space below the button */
+  background-color: var(--background-elevated-base, #282828); /* Use theme variable or default */
+  color: var(--text-base, #ffffff);
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 100; /* Ensure it's above other elements */
+  white-space: nowrap; /* Prevent text wrapping */
+  font-size: 0.875rem;
+  transform-origin: top right; /* Set transform origin for GSAP animation */
+}
+
+/* Optional: Style adjustments for different themes */
+.theme-light .notification-popover {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.theme-retro .notification-popover {
+  background-color: #e4d8c8; /* Example retro color */
+  color: #3d2e22; /* Example retro text color */
+  border: 1px solid #a08c7d; /* Example retro border */
+  box-shadow: 2px 2px 0px #a08c7d; /* Example retro shadow */
+}
+
+/* Style for the new theme button */
+.theme-btn {
+  color: var(--text-color-secondary); /* Use variable */
+}
+
+.theme-btn:hover {
+  color: var(--text-color-primary); /* Use variable */
+  transform: scale(1.1);
+}
+
+.topbar-btn {
+  padding: 8px 16px; /* Consistent padding */
+  border-radius: 20px; /* Consistent border-radius */
+  background-color: var(--background-elevated-base, rgba(0, 0, 0, 0.7)); /* Base background */
+  color: var(--text-subdued, #b3b3b3); /* Base text color */
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease, color 0.2s ease;
+  display: inline-flex; /* Use flex for alignment */
+  align-items: center; /* Center items vertically */
+  gap: 6px; /* Space between icon/image and text */
+  text-decoration: none; /* Remove underline if it's an anchor */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.topbar-btn:hover {
+  transform: scale(1.05);
+  background-color: var(--background-highlight, rgba(255, 255, 255, 0.1)); /* Hover background */
+  color: var(--text-base, #ffffff); /* Hover text color */
+}
+
+/* Specific overrides if needed, but try to keep base style in .topbar-btn */
+.topbar-btn.premium {
+  /* Maybe specific text color or subtle difference if desired */
+  color: var(--text-base, #ffffff); /* Premium often white text */
+  background-color: var(--background-base, #121212); /* Slightly different bg? */
+  border: 1px solid var(--essential-subdued, #727272); /* Optional border */
+}
+
+.topbar-btn.premium:hover {
+  border-color: var(--text-base, #ffffff);
+  background-color: var(--background-elevated-highlight, #2a2a2a); /* Adjust hover */
+}
+
+.topbar-btn.install {
+  /* Styles for install button - should mostly inherit from .topbar-btn */
+  /* Example: Maybe keep it slightly less prominent than premium */
+  background-color: var(--background-elevated-base, rgba(0, 0, 0, 0.7));
+  color: var(--text-subdued, #b3b3b3);
+}
+
+.topbar-btn.install:hover {
+  background-color: var(--background-highlight, rgba(255, 255, 255, 0.1));
+  color: var(--text-base, #ffffff);
+}
+
+/* Adjust user-profile which now also has .topbar-btn */
+.user-profile.topbar-btn {
+  padding: 4px 12px 4px 4px; /* Fine-tune padding for image */
+  gap: 8px;
+  /* Inherits background, color, hover from .topbar-btn */
+}
+
+.user-profile img {
+  width: 28px; /* Keep image size */
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-profile span {
+  font-weight: 600;
+  /* Color is inherited from .topbar-btn */
+}
+
+/* --- Theme Specific Overrides --- */
+
+/* Light Theme */
+.theme-light .topbar-btn {
+  background-color: var(--background-elevated-base, #f0f0f0);
+  color: var(--text-subdued, #535353);
+}
+
+.theme-light .topbar-btn:hover {
+  background-color: var(--background-highlight, #e0e0e0);
+  color: var(--text-base, #000000);
+}
+
+.theme-light .topbar-btn.premium {
+  background-color: var(--background-base, #ffffff);
+  color: var(--text-base, #000000);
+  border: 1px solid var(--essential-subdued, #d9d9d9);
+}
+
+.theme-light .topbar-btn.premium:hover {
+  border-color: var(--text-base, #000000);
+  background-color: var(--background-elevated-highlight, #f5f5f5);
+}
+
+.theme-light .topbar-btn.install {
+  background-color: var(--background-elevated-base, #f0f0f0);
+  color: var(--text-subdued, #535353);
+}
+
+.theme-light .topbar-btn.install:hover {
+  background-color: var(--background-highlight, #e0e0e0);
+  color: var(--text-base, #000000);
+}
+
+.theme-light .user-profile.topbar-btn {
+  /* Adjust if needed for light theme */
+}
+
+/* Retro Theme */
+.theme-retro .topbar-btn {
+  background-color: var(--background-elevated-base, #d4c8b8); /* Example retro color */
+  color: var(--text-subdued, #533e2d);
+  border: 1px solid transparent; /* Add base border for consistency */
+}
+
+.theme-retro .topbar-btn:hover {
+  background-color: var(--background-highlight, #c8bcae);
+  color: var(--text-base, #3d2e22);
+  border-color: var(--essential-subdued, #a08c7d); /* Add border on hover */
+}
+
+.theme-retro .topbar-btn.premium {
+  background-color: var(--background-base, #e4d8c8);
+  color: var(--text-base, #3d2e22);
+  border: 1px solid var(--essential-subdued, #a08c7d);
+}
+
+.theme-retro .topbar-btn.premium:hover {
+  border-color: var(--text-base, #3d2e22);
+  background-color: var(--background-elevated-highlight, #d8ccbd);
+}
+
+.theme-retro .topbar-btn.install {
+  background-color: var(--background-elevated-base, #d4c8b8);
+  color: var(--text-subdued, #533e2d);
+  border: 1px solid transparent;
+}
+
+.theme-retro .topbar-btn.install:hover {
+  background-color: var(--background-highlight, #c8bcae);
+  color: var(--text-base, #3d2e22);
+  border-color: var(--essential-subdued, #a08c7d);
+}
+
+.theme-retro .user-profile.topbar-btn {
+  /* Adjust if needed for retro theme */
+  border: 1px solid transparent; /* Ensure consistent border */
+}
+
+.theme-retro .user-profile.topbar-btn:hover {
+  border-color: var(--essential-subdued, #a08c7d);
+}
+
+/* Main content inner */
+.main-content-inner {
+  padding-top: 16px;
+  /* Add some additional padding at the bottom of inner content as well */
+  padding-bottom: 20px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.greeting-header {
+  font-size: 32px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+/* Recently played grid */
+.recent-grid {
+  display: grid;
+  /* Use a fixed 3-column layout for consistency */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; /* Reduced gap slightly */
+  margin-bottom: 40px;
+  /* Ensure items align at the start if heights differ slightly */
+  align-items: start;
+}
+
+.recent-item {
+  background-color: var(--bg-color-highlight); /* Use variable */
+  border-radius: 4px;
+  overflow: hidden;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* Add a minimum height to prevent collapse before image loads */
+  min-height: 80px;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title span {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.section-title a {
+  color: var(--text-color-secondary); /* Use variable */
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.section-title a:hover {
+  text-decoration: underline;
+  color: var(--text-color-primary); /* Use variable */
+}
+
+/* Grid containers */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+/* Card styles */
+.card {
+  background-color: var(--bg-color-secondary); /* Use variable */
+  border-radius: 8px;
+  padding: 16px;
+  transition: background-color 0.3s;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 8px 24px var(--card-shadow); /* Use variable */
+}
+
+.card:hover {
+  background-color: var(--bg-color-tertiary); /* Use variable */
+}
+
+.card:hover .card-play {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px var(--card-shadow); /* Use variable */
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+/* Add this rule */
+.theme-light .card-title,
+.theme-retro .card-title {
+  color: #000 !important; /* Force black color for light/retro themes */
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: var(--text-color-secondary); /* Use variable */
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+/* Optional: Add this rule for subtitles if needed */
+.theme-light .card-subtitle,
+.theme-retro .card-subtitle {
+  color: #333 !important; /* Force dark grey for light/retro themes */
+}
+
+/* Player bar */
+.player-bar {
+  height: 72px; /* Reduced height from 90px */
+  background-color: var(--bg-color-secondary); /* Use variable */
+  border-top: 1px solid var(--border-color); /* Use variable */
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  grid-column: 1 / -1;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease, border-color 0.3s ease, height 0.3s ease; /* Added height transition */
+}
+
+.now-playing {
+  flex: 1;
+  max-width: 30%;
+  display: flex;
+  align-items: center;
+}
+
+.now-playing img {
+  width: 56px;
+  height: 56px;
+  margin-right: 12px;
+}
+
+.now-playing-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.now-playing-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.now-playing-artist {
+  font-size: 12px;
+  color: var(--text-color-secondary); /* Use variable */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.player-controls {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 40%;
+}
+
+.player-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  color: var(--text-color-secondary); /* Use variable */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.control-button:hover {
+  color: var(--text-color-primary); /* Use variable */
+}
+
+.play-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--text-color-primary); /* Use variable */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--bg-color-primary); /* Use variable */
+  transition: transform 0.1s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-size: 12px;
+  color: var(--text-color-secondary); /* Use variable */
+}
+
+.progress-bar {
+  height: 4px;
+  background-color: var(--bg-color-tertiary); /* Use variable */
+  border-radius: 2px;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.progress-bar-filled {
+  height: 100%;
+  background-color: var(--text-color-secondary); /* Use variable */
+  border-radius: 2px;
+  transition: width 0.1s linear, background-color 0.3s ease;
+}
+
+.progress-bar:hover .progress-bar-filled {
+  background-color: var(--accent-color); /* Use variable */
+}
+
+.player-options {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  max-width: 30%;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 125px;
+}
+
+/* Modal styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--modal-backdrop); /* Use variable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.album-modal {
+  background-color: var(--bg-color-secondary); /* Use variable */
+  border-radius: 8px;
+  width: 80%;
+  max-width: 960px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 16px 24px var(--card-shadow); /* Use variable */
+  transition: background-color 0.3s ease;
+}
+
+.album-header {
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+  background: linear-gradient(transparent, var(--bg-color-secondary)); /* Use variable */
+}
+
+.album-cover {
+  width: 192px;
+  height: 192px;
+  margin-right: 24px;
+  box-shadow: 0 4px 60px var(--card-shadow); /* Use variable */
+}
+
+.album-info {
+  flex: 1;
+}
+
+.album-type {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.album-title {
+  font-size: 48px;
+  font-weight: 900;
+  margin: 0 0 16px 0;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.album-meta {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-color-secondary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.album-artist {
+  font-weight: 700;
+  color: var(--text-color-secondary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.album-tracks {
+  padding: 0 24px 24px;
+}
+
+.track-list-header {
+  display: grid;
+  grid-template-columns: 48px 4fr 2fr 1fr;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border-color); /* Use variable */
+  margin-bottom: 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-color-secondary); /* Use variable */
+  letter-spacing: 1px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.track-item {
+  display: grid;
+  grid-template-columns: 48px 4fr 2fr 1fr;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.track-item:hover {
+  background-color: var(--bg-color-highlight); /* Use variable */
+}
+
+.track-item-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color-secondary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.track-item-name {
+  font-weight: 500;
+  color: var(--text-color-primary); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.track-item-artist,
+.track-item-duration {
+  font-size: 14px;
+  color: var(--text-color-secondary); /* Use variable */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.track-item-artist:hover,
+.track-item-duration:hover {
+  color: var(--text-color-primary); /* Use variable */
+}
+
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+/* Styles for search results section if added */
+.search-results-section {
+  margin-top: 24px;
+  padding: 0 16px; /* Add padding consistent with main content */
+}
+
+.no-results-message {
+  color: var(--text-color-secondary); /* Use variable */
+  text-align: center;
+  padding: 40px 20px; /* More padding */
+  font-size: 18px; /* Larger text */
+  transition: color 0.3s ease;
+}
+
+/* Random feature styles */
+.random-feature {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.random-btn {
+  background-color: var(--card-background);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.random-btn:hover {
+  background-color: var(--card-hover-background);
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn:hover {
+  color: var(--accent-color);
+}
+
+/* Improved styling for the random dropdown */
+.random-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  background-color: var(--sidebar-background);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  width: 250px;
+  z-index: 1000;
+  padding: 16px;
+  /* Make dropdown fully opaque */
+  opacity: 1;
+  /* Add a border for better definition */
+  border: 1px solid var(--border-color);
+}
+
+.filter-section select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--card-background);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  /* Ensure opacity is 100% */
+  opacity: 1;
+}
+
+/* Fix dropdown menu color issues in dark mode */
+.theme-dark .random-dropdown {
+  background-color: #282828;
+  color: #ffffff;
+}
+
+.theme-dark .filter-section select {
+  background-color: #3e3e3e;
+  color: #ffffff;
+  border-color: #444;
+}
+
+.theme-dark .filter-section select option {
+  background-color: #3e3e3e;
+  color: #ffffff;
+}
+
+/* Light theme adjustments */
+.theme-light .random-dropdown {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.theme-light .filter-section select {
+  background-color: #ffffff;
+  color: #333;
+  border-color: #ddd;
+}
+
+/* Retro theme adjustments */
+.theme-retro .random-dropdown {
+  background-color: #e8d8c3;
+  color: #5d4037;
+}
+
+.theme-retro .filter-section select {
+  background-color: #f5e6d0;
+  color: #5d4037;
+  border-color: #b8977e;
+}
+
+/* Additional styles to ensure dropdown is visible and properly styled */
+.dropdown-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dropdown-header button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.filter-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* --- Random Feature Styling --- */
+.random-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between Random and Filter buttons */
+  margin-left: auto; /* Push towards the right, before user controls */
+  margin-right: 15px;
+}
+
+/* Apply general topbar button styles to random/filter buttons */
+.random-action-btn,
+.filter-action-btn {
+  /* Inherit base styles from .topbar-btn */
+  padding: 8px; /* Adjust padding for icon-only or icon+text */
+  border-radius: 50%; /* Make icon buttons circular */
+  background-color: var(--background-elevated-base, rgba(0, 0, 0, 0.7));
+  color: var(--text-subdued, #b3b3b3);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Center icon */
+  font-size: 1.1rem; /* Adjust icon size if needed */
+  width: 32px; /* Fixed width for circular button */
+  height: 32px; /* Fixed height for circular button */
+}
+
+.random-action-btn:hover,
+.filter-action-btn:hover {
+  transform: scale(1.1); /* Slightly larger scale on hover */
+  background-color: var(--background-highlight, rgba(255, 255, 255, 0.1));
+  color: var(--text-base, #ffffff);
+}
+
+.random-action-btn:active,
+.filter-action-btn:active {
+  transform: scale(1); /* Reset scale on active */
+  background-color: var(--background-press, rgba(255, 255, 255, 0.2)); /* Press effect */
+}
+
+/* Optional: Keep random icon color distinct if desired, otherwise remove */
+/* .random-action-btn .random-icon {
+  color: #f579aa;
+} */
+
+/* --- Theme Specific Overrides for Random/Filter Buttons --- */
+
+/* Light Theme */
+.theme-light .random-action-btn,
+.theme-light .filter-action-btn {
+  background-color: var(--background-elevated-base, #f0f0f0);
+  color: var(--text-subdued, #535353);
+}
+
+.theme-light .random-action-btn:hover,
+.theme-light .filter-action-btn:hover {
+  background-color: var(--background-highlight, #e0e0e0);
+  color: var(--text-base, #000000);
+}
+
+.theme-light .random-action-btn:active,
+.theme-light .filter-action-btn:active {
+  background-color: var(--background-press, #dcdcdc);
+}
+
+/* Retro Theme */
+.theme-retro .random-action-btn,
+.theme-retro .filter-action-btn {
+  background-color: var(--background-elevated-base, #d4c8b8);
+  color: var(--text-subdued, #533e2d);
+}
+
+.theme-retro .random-action-btn:hover,
+.theme-retro .filter-action-btn:hover {
+  background-color: var(--background-highlight, #c8bcae);
+  color: var(--text-base, #3d2e22);
+}
+
+.theme-retro .random-action-btn:active,
+.theme-retro .filter-action-btn:active {
+  background-color: var(--background-press, #bcae9f);
+}
+
+.random-dropdown {
+  position: absolute;
+  top: calc(100% + 10px); /* Position below the buttons */
+  right: 0; /* Align to the right of the container */
+  background-color: var(--bg-elevated-base, #282828);
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  min-width: 250px;
+  color: var(--text-base, #fff);
+  border: 1px solid var(--essential-subdued, #404040);
+}
+
+/* Track search results styling */
+.track-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.search-track-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--bg-color-highlight);
+  transition: background-color 0.2s ease;
+}
+
+.search-track-item:hover {
+  background-color: var(--bg-color-press);
+}
+
+.track-item-cover {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.track-item-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track-play-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.search-track-item:hover .track-play-icon {
+  opacity: 1;
+}
+
+.track-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Enables text truncation */
+}
+
+.track-item-info .track-item-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color-primary);
+}
+
+.track-item-info .track-item-artist {
+  font-size: 12px;
+  color: var(--text-color-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Adjust theme-specific colors for track results */
+.theme-light .search-track-item {
+  background-color: var(--bg-color-highlight);
+}
+
+.theme-light .search-track-item:hover {
+  background-color: var(--bg-color-press);
+}
+
+.theme-retro .search-track-item {
+  background-color: var(--bg-color-highlight);
+}
+
+.theme-retro .search-track-item:hover {
+  background-color: var(--bg-color-press);
+}

@@ -1,0 +1,83 @@
+/* Card hover animations */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card .card-play {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.card:hover .card-play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Button hover effects */
+.control-button, .play-button, .nav-btn, .topbar-btn {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.control-button:hover, .nav-btn:hover, .topbar-btn:hover {
+  transform: scale(1.1);
+}
+
+.play-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(30, 215, 96, 0.5);
+}
+
+/* Track item hover animation */
+.track-item {
+  transition: background-color 0.2s ease;
+}
+
+.track-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Recently played item hover */
+.recent-item {
+  transition: transform 0.3s ease;
+}
+
+.recent-item:hover {
+  transform: scale(1.05);
+}
+
+/* Progress bar animation */
+.progress-bar {
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  background: rgba(255, 255, 255, 0.2);
+  transition: width 0.3s ease;
+}
+
+.progress-bar:hover:after {
+  width: 100%;
+}
+
+/* Volume hover animation */
+.volume-container:hover .progress-bar {
+  height: 6px;
+}
+
+/* Theme transition */
+body, .main-content, .left-sidebar, .player-bar {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}

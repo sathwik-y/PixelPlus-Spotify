@@ -1,0 +1,259 @@
+.play-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--accent-color); /* Use variable */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--bg-color-primary); /* Use variable for icon */
+  box-shadow: 0 8px 8px var(--card-shadow); /* Use variable */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.play-button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.theme-light .play-button {
+  color: #fff; /* Ensure contrast on light green */
+}
+
+.theme-retro .play-button {
+  color: var(--bg-color-primary); /* Ensure contrast on retro accent */
+}
+
+.item-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-color-primary); /* Use variable */
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  transition: color 0.3s ease;
+}
+
+.item-subtitle {
+  font-size: 14px;
+  color: var(--text-color-secondary); /* Use variable */
+  margin: 4px 0 0 0;
+  transition: color 0.3s ease;
+}
+
+.sidebar {
+  width: 280px; /* Or make dynamic if needed */
+  min-width: 280px;
+  height: 100%;
+  background-color: var(--bg-color-primary); /* Use variable */
+  color: var(--text-color-secondary); /* Use variable */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-right: 1px solid var(--border-color); /* Optional separator */
+}
+
+.sidebar-top {
+  padding: 16px 8px 8px 8px; /* Adjust padding */
+  background-color: var(--bg-color-secondary); /* Use variable */
+  border-radius: 8px;
+  margin: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px; /* Adjust padding */
+  text-decoration: none;
+  color: var(--text-color-secondary); /* Use variable */
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: var(--text-color-primary); /* Use variable */
+  background-color: var(--bg-color-highlight); /* Subtle hover */
+}
+
+.sidebar-link.active {
+  color: var(--text-color-primary); /* Use variable */
+}
+
+.sidebar-library {
+  margin: 0 8px 8px 8px; /* Adjust margin */
+  padding: 16px;
+  background-color: var(--bg-color-secondary); /* Use variable */
+  border-radius: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.library-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 8px; /* Add padding */
+}
+
+.library-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-color-secondary); /* Use variable */
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.library-title:hover {
+  color: var(--text-color-primary);
+}
+
+.library-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color-secondary); /* Use variable */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.library-button:hover {
+  color: var(--text-color-primary); /* Use variable */
+  background-color: var(--bg-color-highlight); /* Use variable */
+  transform: scale(1.1);
+}
+
+.library-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+  padding: 0 8px 8px 8px; /* Add padding */
+  scrollbar-width: none;
+}
+
+.library-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  background-color: var(--bg-color-tertiary); /* Use variable */
+  border: none; /* Remove border or use var(--border-color) */
+  border-radius: 32px;
+  padding: 6px 12px; /* Adjust padding */
+  color: var(--text-color-secondary); /* Use variable */
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  background-color: var(--bg-color-highlight); /* Use variable */
+  color: var(--text-color-primary);
+}
+
+.filter-pill.active {
+  background-color: var(--text-color-primary); /* Use variable */
+  color: var(--bg-color-primary); /* Use variable */
+}
+
+.theme-light .filter-pill.active {
+  background-color: #333; /* Darker background for light theme */
+  color: #fff; /* White text */
+}
+
+.theme-retro .filter-pill.active {
+  background-color: var(--text-color-primary); /* Dark brown */
+  color: var(--bg-color-primary); /* Cream text */
+}
+
+.library-items {
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-color: var(--scrollbar-thumb) transparent; /* Use variable */
+  scrollbar-width: thin;
+  padding: 0 8px; /* Add padding */
+}
+
+.library-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.library-items::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb); /* Use variable */
+  border-radius: 4px;
+}
+
+.library-items::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.library-item {
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Consistent padding */
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.library-item:hover {
+  background-color: var(--bg-color-highlight); /* Use variable */
+}
+
+.library-item img {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.library-item img.round-image {
+  border-radius: 50%;
+}
+
+.library-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.library-item-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color-primary); /* Use variable */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.library-item-meta {
+  font-size: 12px;
+  color: var(--text-color-secondary); /* Use variable */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
